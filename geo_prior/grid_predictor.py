@@ -14,7 +14,7 @@ class GridPredictor:
 
     def __init__(self, mask, params, mask_only_pred=False):
         # set up coordinates to make dense prediction on grid
-        self.device = params['device']
+        self.device = params['device'] if torch.cuda.is_available() else "cpu"
         self.params = params
         self.mask = mask
         self.use_date_feats = params['use_date_feats']
